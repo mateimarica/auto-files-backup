@@ -1,0 +1,17 @@
+{
+  "name": "auto-files-backup",
+  "version": "1.0.0",
+  "description": "Auto backups files to files.mateimarica.dev",
+  "main": "index.js",
+  "scripts": {
+    "prod": "screen node index.js",
+    "dev": "node index.js"
+  },
+  "author": "Matei Marica",
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^5.3.0",
+    "request": "^2.88.2",
+    "xmlhttprequest": "^1.8.0"
+  }
+}
