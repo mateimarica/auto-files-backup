@@ -1,3 +1,4 @@
+require('dotenv').config();
 const fs = require('fs'),
       archiver = require('archiver'),
       path = require("path"),
