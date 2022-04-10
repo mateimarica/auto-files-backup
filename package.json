@@ -4,7 +4,7 @@
   "description": "Auto backups files to files.mateimarica.dev",
   "main": "index.js",
   "scripts": {
-    "prod": "screen node index.js",
+    "prod": "screen -S \"auto-files-backup\" node index.js",
     "dev": "node index.js"
   },
   "author": "Matei Marica",

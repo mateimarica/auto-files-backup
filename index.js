@@ -6,19 +6,21 @@ const fs = require('fs'),
 	  request = require('request');
 
 if (process.argv.length != 4) {
-	console.log('- ERROR! Required format:\nnpm run prod <relativeDirPathToZip> <intervalInHours>\n');
+	console.log('- ERROR! Required format:\nnpm run prod <relativeSrcDir> <intervalInHours>\n');
 	return;
 }
 
-const relativeDirPathToZip = process.argv[2],
+const relativeSrcDir = process.argv[2],
       intervalInHours = process.argv[3],
-      dirToZipName = path.basename(relativeDirPathToZip),
+      dirToZipName = path.basename(relativeSrcDir),
 	  outputZipAbsolutePath = path.join(__dirname, dirToZipName + '.zip');
 
-console.log('relativeDirPathToZip=' + relativeDirPathToZip);
+console.log('relativeSrcDir=' + relativeSrcDir);
+console.log('absolutePathToSrcDir=' + path.join(__dirname, relativeSrcDir));
 console.log('intervalInHours=' + intervalInHours);
 console.log('dirToZipName=' + dirToZipName);
 console.log('outputZipAbsolutePath=' + outputZipAbsolutePath);
+
 
 setInterval(doBackup, intervalInHours * 60 * 60 * 1000);
 
@@ -41,7 +43,7 @@ function doBackup() {
 	archive.pipe(output);
 
 	// append files from a sub-directory and naming it `new-subdir` within the archive
-	archive.directory(path.join(__dirname, relativeDirPathToZip), dirToZipName);
+	archive.directory(path.join(__dirname, relativeSrcDir), dirToZipName);
 
 	// finalize the archive (ie we are done appending files but streams have to finish yet)
 	archive.finalize();
